@@ -58,14 +58,16 @@ namespace QuietGlamours
         //JP: の外見を武具投影した。
         private void OnChatMessage(XivChatType type, uint senderId, ref SeString sender, ref SeString message, ref bool isHandled)
         {
-            if (this.configuration.enabled)
+            if (!this.configuration.enabled)
             {
-                if ((message.TextValue.Contains("You cast a glamour.") | message.TextValue.Contains("の外見を武具投影した") | 
-                    message.TextValue.Contains("Vous projetez un mirage.") | message.TextValue.Contains("Du projizierst ein")) & 
-                    (type & XivChatType.SystemMessage) == XivChatType.SystemMessage)
-                {
-                    isHandled = true;
-                }
+                return;
+            }
+            if ((message.TextValue.Contains("You cast a glamour.") | message.TextValue.Contains("の外見を武具投影した") |
+                message.TextValue.Contains("Vous projetez un mirage.") | message.TextValue.Contains("Du projizierst ein")) &
+                (type & XivChatType.SystemMessage) == XivChatType.SystemMessage)
+            {
+                isHandled = true;
+                return;
             }
         }
 
