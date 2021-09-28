@@ -69,6 +69,17 @@ namespace QuietGlamours
                 isHandled = true;
                 return;
             }
+            if (!this.configuration.plateEnabled)
+            {
+                return;
+            }
+            if ((message.TextValue.Contains("Glamours projected from plate ") | message.TextValue.Contains("により武具投影が行われました") |
+                message.TextValue.Contains("a été projetée sur votre équipement.") | message.TextValue.Contains("Die Projektionsplatte ")) &
+                (type & XivChatType.SystemMessage) == XivChatType.SystemMessage)
+            {
+                isHandled = true;
+                return;
+            }
         }
 
         private void DrawUI()

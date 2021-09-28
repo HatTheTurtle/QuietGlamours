@@ -10,6 +10,7 @@ namespace QuietGlamours
         public int Version { get; set; } = 0;
 
         public bool enabled { get; set; } = true;
+        public bool plateEnabled { get; set; } = false;
 
         // the below exist just to make saving less cumbersome
 

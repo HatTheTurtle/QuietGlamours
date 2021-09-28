@@ -40,7 +40,7 @@ namespace QuietGlamours
                 return;
             }
 
-            ImGui.SetNextWindowSize(new Vector2(250, 65), ImGuiCond.Always);
+            ImGui.SetNextWindowSize(new Vector2(275, 85), ImGuiCond.Always);
             if (ImGui.Begin("Quiet Glamours", ref this.settingsVisible,
                 ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoCollapse | ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoScrollWithMouse))
             {
@@ -50,6 +50,12 @@ namespace QuietGlamours
                 {
                     this.configuration.enabled = configValue;
                     // can save immediately on change, if you don't want to provide a "Save and Close" button
+                    this.configuration.Save();
+                }
+                var plateValue = this.configuration.plateEnabled;
+                if (ImGui.Checkbox("Suppress system glamour plate messages", ref plateValue))
+                {
+                    this.configuration.plateEnabled = plateValue;
                     this.configuration.Save();
                 }
             }
